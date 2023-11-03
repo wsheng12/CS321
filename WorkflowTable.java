@@ -1,3 +1,5 @@
+package org.openjfx.otherClasses;
+
 import java.util.*;
 
 //WorkflowTable class manages queues of NewGreenCard IDs that need to be reviewed and approved
