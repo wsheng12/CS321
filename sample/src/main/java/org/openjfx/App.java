@@ -80,6 +80,7 @@ public class App extends Application {
         s.setScene(sc);
 
         s.show();
+        s.setMaximized(true);
     }
 
     public static void main(String[] args) {
