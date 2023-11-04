@@ -15,16 +15,19 @@ public class NewGreenCard {
     // The status of the green card requester
     private String status;
 
+    private String email;
+
     // Constructs a new green card object with the specified address, name, and id
-    private NewGreenCard(String address, String name, String id) {
+    private NewGreenCard(String address, String name, String id, String email) {
         this.address = address;
         this.name = name;
         this.id = id;
+        this.email = email;
         status = "initial";
     }
 
-    public static NewGreenCard createNewGreenCard(String address, String name, String id) {
-        return new NewGreenCard(address, name, id);
+    public static NewGreenCard createNewGreenCard(String address, String name, String id, String email) {
+        return new NewGreenCard(address, name, id, email);
     }
 
     // Validates the green card requester information
