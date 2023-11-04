@@ -60,31 +60,9 @@ public class ApproverScene {
         GridPane rootNode = new GridPane();
         rootNode.getStyleClass().addAll("submission");
 
-        rootNode.add(new Label("Name:"), 0, 0);
-        TextField name = new TextField();
-        rootNode.add(name, 1, 0);
-
-        rootNode.add(new Label("Address:"), 0, 1);
-        TextField address = new TextField();
-        rootNode.add(address, 1, 1);
-
-        rootNode.add(new Label("Email:"), 0, 2);
-        TextField email = new TextField();
-        rootNode.add(email, 1, 2);
-
-        rootNode.add(new Label("ID:"), 0, 3);
-        TextField id = new TextField();
-        rootNode.add(id, 1, 3);
-
-        rootNode.add(new Label("Approve"), 0, 4);
-
         Button aButton = new Button("Approve");
-        rootNode.add(aButton, 0, 4);
-
-        rootNode.add(new Label("Disapprove"), 1, 4);
 
         Button daButton = new Button("Disapprove");
-        rootNode.add(daButton, 1, 4);
 
         GridPane.setHalignment(aButton, HPos.LEFT);
         TextField result = new TextField();
@@ -99,14 +77,17 @@ public class ApproverScene {
         });
 
         Label success = new Label("Click approve or disapprove.");
-        rootNode.add(success,7,0);
 
-        Button loadRequestButton = new Button("loadRequest");
-        rootNode.add(loadRequestButton, 2, 4);
+        Button loadRequestButton = new Button("Load Request");
+        rootNode.add(loadRequestButton, 0, 1);
 
         EventHandler<ActionEvent> loadRequest = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                
+                rootNode.add(aButton, 0, 2);
+                rootNode.add(daButton, 0, 3);
+                rootNode.add(success, 0, 4);
+                // rootNode.add(new Label("Approve"), 0, 4);
+                // rootNode.add(new Label("Disapprove"), 1, 4);
 
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
@@ -124,33 +105,29 @@ public class ApproverScene {
 
                 rootNode.add(reviewer_title, 0, 0);
 
-
-
             }
         };
 
         loadRequestButton.setOnAction(loadRequest);
 
+        EventHandler<ActionEvent> approverEntryClick = new EventHandler<ActionEvent>() {
 
-         EventHandler<ActionEvent> approverEntryClick = new EventHandler<ActionEvent>() {
-            
             public void handle(ActionEvent e) {
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
                 success.setText("It has been approved and an email has been sent to the user");
-
 
             }
         };
 
         aButton.setOnAction(approverEntryClick);
 
-
         EventHandler<ActionEvent> disapproverEntryClick = new EventHandler<ActionEvent>() {
-            
+
             public void handle(ActionEvent e) {
-                
-                success.setText("It has been disapproved and has ben sent back to the reviewer.");;
+
+                success.setText("It has been disapproved and has ben sent back to the reviewer.");
+                ;
 
             }
         };
