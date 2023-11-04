@@ -4,6 +4,8 @@ import java.util.concurrent.Flow;
 
 import org.openjfx.otherClasses.NewGreenCard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -79,10 +81,10 @@ public class ApproverScene {
         Button aButton = new Button("Approve");
         rootNode.add(aButton, 0, 4);
 
-        rootNode.add(new Label("Disapprove"), 3, 4);
+        rootNode.add(new Label("Disapprove"), 1, 4);
 
         Button daButton = new Button("Disapprove");
-        rootNode.add(daButton, 3, 4);
+        rootNode.add(daButton, 1, 4);
 
         GridPane.setHalignment(aButton, HPos.LEFT);
         TextField result = new TextField();
@@ -91,11 +93,69 @@ public class ApproverScene {
         test.getStyleClass().addAll("center-hbox");
 
         test.add(rootNode, 0, 0);
-        // test.add(leftHbox);
 
         aButton.setOnAction(e -> {
 
         });
+
+        Label success = new Label("Click approve or disapprove.");
+        rootNode.add(success,7,0);
+
+        Button loadRequestButton = new Button("loadRequest");
+        rootNode.add(loadRequestButton, 2, 4);
+
+        EventHandler<ActionEvent> loadRequest = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                
+
+                // workflow table pulls in the id - since workflow table class is not done yet I
+                // will be adding my own ID here.
+                String id = "ABC123456789";
+
+                // dummy add internal database
+                NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
+                        "brian@gmail.com");
+                InternalDatabase.add("ABC123456789", request);
+
+                NewGreenCard load = InternalDatabase.get(id);
+                Text reviewer_title = new Text(
+                        "Name: " + load.getName() + " | Address: " + load.getAddress() + " | email: " + load.getEmail()
+                                + " | id: " + load.getId());
+
+                rootNode.add(reviewer_title, 0, 0);
+
+
+
+            }
+        };
+
+        loadRequestButton.setOnAction(loadRequest);
+
+
+         EventHandler<ActionEvent> approverEntryClick = new EventHandler<ActionEvent>() {
+            
+            public void handle(ActionEvent e) {
+                // workflow table pulls in the id - since workflow table class is not done yet I
+                // will be adding my own ID here.
+                success.setText("It has been approved and an email has been sent to the user");
+
+
+            }
+        };
+
+        aButton.setOnAction(approverEntryClick);
+
+
+        EventHandler<ActionEvent> disapproverEntryClick = new EventHandler<ActionEvent>() {
+            
+            public void handle(ActionEvent e) {
+                
+                success.setText("It has been disapproved and has ben sent back to the reviewer.");;
+
+            }
+        };
+
+        daButton.setOnAction(disapproverEntryClick);
 
         // left side
         HBox lefthBox = new HBox();
