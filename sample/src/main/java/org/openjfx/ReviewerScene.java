@@ -89,10 +89,6 @@ public class ReviewerScene {
         // test.add(leftHbox);
 
         aButton.setOnAction(e -> {
-            System.out.println(address.getText());
-            System.out.println(name.getText());
-            System.out.println(email.getText());
-            System.out.println(id.getText());
 
         });
 
