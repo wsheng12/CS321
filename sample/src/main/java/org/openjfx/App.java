@@ -11,10 +11,11 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class App extends Application {
-
+    Stage s;
     @Override
     public void start(Stage s) {
         // set title for the stage
+        this.s = s;
         s.setTitle("creating buttons");
 
         // create three buttons
@@ -31,6 +32,7 @@ public class App extends Application {
         // action event
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
+
 
                 DataEntryScene dataEntryScene = new DataEntryScene();
                 Scene dataEntryScreen = dataEntryScene.createScene();

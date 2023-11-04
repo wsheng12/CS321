@@ -74,7 +74,7 @@ public class NewGreenCard {
         return address;
     }
 
-    public String getEmail(){
+    public String getEmail() {
 
         return email;
 
@@ -92,9 +92,8 @@ public class NewGreenCard {
     public void setId(String id) {
     }
 
-    public void setEmail(String email){
+    public void setEmail() {
 
-        
     }
 
     // Sets the status of the green card requester

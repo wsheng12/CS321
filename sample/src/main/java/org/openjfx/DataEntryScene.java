@@ -90,31 +90,50 @@ public class DataEntryScene {
         test.add(rootNode, 0, 0);
         // test.add(leftHbox);
 
+        Label success = new Label("Click the button to send to be sent for review");
+        rootNode.add(success, 0, 5);
+
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
+            
             public void handle(ActionEvent e) {
                 ExternalDatabase external = new ExternalDatabase();
                 int count = 0;
                 int checkNull = 0;
-                NewGreenCard greenCard= NewGreenCard.createNewGreenCard(address.getText(), name.getText(), id.getText(), email.getText());
+                NewGreenCard greenCard = NewGreenCard.createNewGreenCard(address.getText(), name.getText(),
+                        id.getText(), email.getText());
 
-                if(external.searchExternalDatabase(id.getText()) == null){checkNull--;}
-                else if(external.searchExternalDatabase(id.getText()).getName() == null){checkNull--;}
-                else if(external.searchExternalDatabase(id.getText()).getAddress() == null){checkNull--;}
-                else if(external.searchExternalDatabase(id.getText()).getEmail() == null){checkNull--;}
+                if (external.searchExternalDatabase(id.getText()) == null) {
+                    checkNull--;
+                } else if (external.searchExternalDatabase(id.getText()).getName() == null) {
+                    checkNull--;
+                } else if (external.searchExternalDatabase(id.getText()).getAddress() == null) {
+                    checkNull--;
+                } 
 
-                if(checkNull == 0){
-                    if(id.getText().equals(external.searchExternalDatabase(id.getText()).getId())){count++;};
-                    if(name.getText().equals(external.searchExternalDatabase(id.getText()).getName())){count++;};
-                    if(address.getText().equals(external.searchExternalDatabase(id.getText()).getAddress())){count++;};
-                    if(email.getText().equals(external.searchExternalDatabase(id.getText()).getEmail())){count++;};
+                if (checkNull == 0) {
+                    if (id.getText().equals(external.searchExternalDatabase(id.getText()).getId())) {
+                        count++;
+                    }
+                    ;
+                    if (name.getText().equals(external.searchExternalDatabase(id.getText()).getName())) {
+                        count++;
+                    }
+                    ;
+                    if (address.getText().equals(external.searchExternalDatabase(id.getText()).getAddress())) {
+                        count++;
+                    }
+                    ;
+
                 }
 
-                if(count == 4){
-
+                if (count == 3) {
                     InternalDatabase.add(id.getText(), greenCard);
+                    success.setText("Data is validated, and will be sent to be reviewed");
+
+                } else {
+                    success.setText("Data is incorrect and has not been validated, please re-enter data.");
 
                 }
-
 
             }
         };
