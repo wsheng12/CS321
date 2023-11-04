@@ -74,6 +74,12 @@ public class NewGreenCard {
         return address;
     }
 
+    public String getEmail(){
+
+        return email;
+
+    }
+
     // Sets the address associated with the green card requester
     public void setAddress(String address) {
     }
@@ -84,6 +90,11 @@ public class NewGreenCard {
 
     // Sets the id of the green card requester
     public void setId(String id) {
+    }
+
+    public void setEmail(String email){
+
+        
     }
 
     // Sets the status of the green card requester
