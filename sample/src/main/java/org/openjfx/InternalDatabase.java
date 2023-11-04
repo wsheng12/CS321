@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 import org.openjfx.otherClasses.NewGreenCard;
 
-public class InternalDatabse {
+public class InternalDatabase {
     public static HashMap<String, NewGreenCard> internDatabase = new HashMap<String, NewGreenCard>();
 
     
-    public boolean add(String id, NewGreenCard greenCard) {
+    public static boolean add(String id, NewGreenCard greenCard) {
 
         internDatabase.put(id, greenCard);
 
@@ -16,7 +16,7 @@ public class InternalDatabse {
 
     }
 
-    public NewGreenCard get(String id){
+    public static NewGreenCard get(String id){
 
         return internDatabase.get(id);
 
