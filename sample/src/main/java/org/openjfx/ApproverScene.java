@@ -36,7 +36,8 @@ public class ApproverScene {
 
     public Scene createScene() {
         // dummy object
-        NewGreenCard request = NewGreenCard.createNewGreenCard("12345 Lois Lane", "Brian Andres", "ABC123456789");
+        NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
+                "brian@gmail.com");
 
         // Create a new scene with the layout
 
