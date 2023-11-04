@@ -4,6 +4,8 @@ import java.util.concurrent.Flow;
 
 import org.openjfx.otherClasses.NewGreenCard;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -47,10 +49,10 @@ public class DataEntryScene {
         // top part
         hbox.getStyleClass().add("top-hbox");
 
-        Text reviewer_title = new Text("Reviewer");
-        reviewer_title.getStyleClass().add("reviewer-title");
+        Text data_title = new Text("Data Entry");
+        data_title.getStyleClass().add("data-title");
 
-        hbox.getChildren().addAll(reviewer_title);
+        hbox.getChildren().addAll(data_title);
 
         border.setTop(hbox);
 
@@ -88,23 +90,26 @@ public class DataEntryScene {
         test.add(rootNode, 0, 0);
         // test.add(leftHbox);
 
-        aButton.setOnAction(e -> {
-            System.out.println(address.getText());
-            System.out.println(name.getText());
-            System.out.println(email.getText());
-            System.out.println(id.getText());
+         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
 
-        });
+                NewGreenCard greenCard = new NewGreenCard(address, name, id, email)
+
+            }
+        };
+
+        aButton.setOnAction(dataEntryClick);
+
 
         // left side
         HBox lefthBox = new HBox();
-        Text reviewer_titles = new Text("Reviewer");
-        lefthBox.getChildren().addAll(reviewer_titles);
+        Text data_titles = new Text("Data Entry");
+        lefthBox.getChildren().addAll(data_titles);
         lefthBox.getStyleClass().add("left-hbox");
 
         // right side
         HBox rightHbox = new HBox();
-        Text rightHboxText = new Text("Reviewer");
+        Text rightHboxText = new Text("Data Entry");
         rightHbox.getChildren().addAll(rightHboxText);
         rightHbox.getStyleClass().add("right-hbox");
 

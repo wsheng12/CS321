@@ -54,7 +54,7 @@ public class App extends Application {
         EventHandler<ActionEvent> approverClick = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
 
-                ReviewerScene approverScene = new ReviewerScene();
+                ApproverScene approverScene = new ApproverScene();
                 Scene approverScreen = approverScene.createScene();
                 s.setScene(approverScreen);
                 s.show();

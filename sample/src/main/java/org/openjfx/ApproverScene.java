@@ -47,10 +47,10 @@ public class ApproverScene {
         // top part
         hbox.getStyleClass().add("top-hbox");
 
-        Text reviewer_title = new Text("Reviewer");
-        reviewer_title.getStyleClass().add("reviewer-title");
+        Text approver_title = new Text("Approver");
+        approver_title.getStyleClass().add("approver-title");
 
-        hbox.getChildren().addAll(reviewer_title);
+        hbox.getChildren().addAll(approver_title);
 
         border.setTop(hbox);
 
@@ -74,10 +74,15 @@ public class ApproverScene {
         TextField id = new TextField();
         rootNode.add(id, 1, 3);
 
-        rootNode.add(new Label("Submit"), 0, 4);
+        rootNode.add(new Label("Approve"), 0, 4);
 
-        Button aButton = new Button("Submit");
-        rootNode.add(aButton, 1, 4);
+        Button aButton = new Button("Approve");
+        rootNode.add(aButton, 0, 4);
+
+        rootNode.add(new Label("Disapprove"), 3, 4);
+
+        Button daButton = new Button("Disapprove");
+        rootNode.add(daButton, 3, 4);
 
         GridPane.setHalignment(aButton, HPos.LEFT);
         TextField result = new TextField();
@@ -98,13 +103,13 @@ public class ApproverScene {
 
         // left side
         HBox lefthBox = new HBox();
-        Text reviewer_titles = new Text("Reviewer");
-        lefthBox.getChildren().addAll(reviewer_titles);
+        Text approver_titles = new Text("Approver");
+        lefthBox.getChildren().addAll(approver_titles);
         lefthBox.getStyleClass().add("left-hbox");
 
         // right side
         HBox rightHbox = new HBox();
-        Text rightHboxText = new Text("Reviewer");
+        Text rightHboxText = new Text("Approver");
         rightHbox.getChildren().addAll(rightHboxText);
         rightHbox.getStyleClass().add("right-hbox");
 
