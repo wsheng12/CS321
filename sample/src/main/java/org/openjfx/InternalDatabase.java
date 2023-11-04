@@ -15,6 +15,10 @@ public class InternalDatabase {
         return true;
 
     }
+    public static boolean replace(String id, NewGreenCard greenCard) {
+        internDatabase.replace(id, greenCard);
+        return true;
+    }
 
     public static NewGreenCard get(String id){
 
