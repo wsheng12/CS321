@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "BA/pipeline-testing" ]
+    branches: [ "Workflow_add_Winston/pipeline-testing" ]
   pull_request:
-    branches: [ "BA/pipeline-testing" ]
+    branches: [ "Workflow_add_Winston/pipeline-testing" ]
 
 jobs:
   build:
