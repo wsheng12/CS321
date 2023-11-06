@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Ls
-      run: ls
+      run: java --version
     - name: cd 
       run: cd sample
     - name: ls
