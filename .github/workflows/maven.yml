@@ -31,6 +31,8 @@ jobs:
       run: ls
     - name: cd 
       run: cd sample
+    - name: ls
+      run: ls
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
