@@ -39,49 +39,47 @@ import javafx.stage.Stage;
 public class DataEntryScene {
 
     public Scene createScene(Stage s) {
-        // dummy object
+
         NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
                 "brian@gmail.com");
 
-        // Create a new scene with the layout
 
         BorderPane border = new BorderPane();
 
-        // input box
-        GridPane rootNode = new GridPane();
+        GridPane base = new GridPane();
 
-        rootNode.getStyleClass().addAll("enter");
+        base.getStyleClass().addAll("enter");
 
-        rootNode.add(new Label("Name:"), 0, 0);
+        base.add(new Label("Name:"), 0, 0);
         TextField name = new TextField();
-        rootNode.add(name, 1, 0);
+        base.add(name, 1, 0);
 
-        rootNode.add(new Label("Address:"), 0, 1);
+        base.add(new Label("Address:"), 0, 1);
         TextField address = new TextField();
-        rootNode.add(address, 1, 1);
+        base.add(address, 1, 1);
 
-        rootNode.add(new Label("Email:"), 0, 2);
+        base.add(new Label("Email:"), 0, 2);
         TextField email = new TextField();
-        rootNode.add(email, 1, 2);
+        base.add(email, 1, 2);
 
-        rootNode.add(new Label("ID:"), 0, 3);
+        base.add(new Label("ID:"), 0, 3);
         TextField id = new TextField();
-        rootNode.add(id, 1, 3);
+        base.add(id, 1, 3);
 
-        rootNode.add(new Label("Submit"), 0, 4);
+        base.add(new Label("Submit"), 0, 4);
 
         Button aButton = new Button("Submit");
-        rootNode.add(aButton, 1, 4);
+        base.add(aButton, 1, 4);
 
         TextField result = new TextField();
 
-        GridPane test = new GridPane();
-        test.getStyleClass().addAll("center-hbox");
+        GridPane trial = new GridPane();
+        trial.getStyleClass().addAll("center-hbox");
 
-        test.add(rootNode, 0, 0);
+        trial.add(base, 0, 0);
 
-        Label success = new Label("Click the button to send to be sent for review");
-        rootNode.add(success, 0, 5);
+        Label hit = new Label("Click the button to send to be sent for review");
+        base.add(hit, 0, 5);
 
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
 
@@ -118,11 +116,11 @@ public class DataEntryScene {
 
                 if (count == 3) {
                     InternalDatabase.add(id.getText(), greenCard);
-                    success.setText("Data is validated, and will be sent to be reviewed");
+                    hit.setText("Data is validated, and will be sent to be reviewed");
                     WorkflowTable.addReviewer(id.getText());
 
                 } else {
-                    success.setText("Data is incorrect and has not been validated, please re-enter data.");
+                    hit.setText("Data is incorrect and has not been validated, please re-enter data.");
 
                 }
 
@@ -144,15 +142,14 @@ public class DataEntryScene {
         border.setRight(rightHbox);
         border.setBottom(botHbox);
 
-        border.setCenter(test);
+        border.setCenter(trial);
 
         Scene scene = new Scene(border, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
-        // Return back
         BackButton createBackButton = new BackButton();
         Button backButton = createBackButton.createButton(s);
-        rootNode.add(backButton, 3, 6);
+        base.add(backButton, 3, 6);
 
         return scene;
     }
