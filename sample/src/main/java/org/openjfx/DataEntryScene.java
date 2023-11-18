@@ -4,7 +4,6 @@ import java.util.concurrent.Flow;
 
 import org.openjfx.otherClasses.NewGreenCard;
 import org.openjfx.otherClasses.WorkflowTable;
-import org.openjfx.BackScene;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,10 +34,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DataEntryScene {
 
-    public Scene createScene() {
+    public Scene createScene(Stage s) {
         // dummy object
         NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
                 "brian@gmail.com");
@@ -84,7 +84,7 @@ public class DataEntryScene {
         rootNode.add(success, 0, 5);
 
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
-            
+
             public void handle(ActionEvent e) {
                 ExternalDatabase external = new ExternalDatabase();
                 int count = 0;
@@ -98,7 +98,7 @@ public class DataEntryScene {
                     checkNull--;
                 } else if (external.searchExternalDatabase(id.getText()).getAddress() == null) {
                     checkNull--;
-                } 
+                }
 
                 if (checkNull == 0) {
                     if (id.getText().equals(external.searchExternalDatabase(id.getText()).getId())) {
@@ -131,12 +131,10 @@ public class DataEntryScene {
 
         aButton.setOnAction(dataEntryClick);
 
-
         HBox rightHbox = new HBox();
         Text rightHboxText = new Text("Data Entry");
         rightHbox.getChildren().addAll(rightHboxText);
         rightHbox.getStyleClass().add("right-hbox");
-
 
         HBox botHbox = new HBox();
         Text botText = new Text("bottomText");
@@ -151,18 +149,10 @@ public class DataEntryScene {
         Scene scene = new Scene(border, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
-        //Return back
-        Button backButton = new Button("Back");
+        // Return back
+        BackButton createBackButton = new BackButton();
+        Button backButton = createBackButton.createButton(s);
         rootNode.add(backButton, 3, 6);
-        
-        EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent e) {
-
-                createScene();
-
-            }
-        };
-        backButton.setOnAction(back);
 
         return scene;
     }

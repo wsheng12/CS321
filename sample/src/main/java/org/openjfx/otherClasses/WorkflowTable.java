@@ -1,4 +1,5 @@
 package org.openjfx.otherClasses;
+
 import java.util.*;
 
 //WorkflowTable class manages queues of NewGreenCard IDs that need to be reviewed and approved
@@ -13,32 +14,34 @@ public class WorkflowTable {
 
     // Adds a NewGreenCard ID to the reviewer queue
     public static boolean addReviewer(String id) {
-        return false;
+        reviewerQueue.add(id);
+        return true;
     }
 
     // Adds a NewGreenCard ID to the approver queue
     public static boolean addApprover(String id) {
-        return false;
+        approverQueue.add(id);
+        return true;
     }
 
     // Removes and returns a NewGreenCard ID from the reviewer queue
     public static String popReviewer() {
-        return null;
+        return reviewerQueue.poll();
     }
 
     // Removes and returns a NewGreenCard ID from the approver queue
     public static String popApprover() {
-        return null;
+        return approverQueue.poll();
     }
 
     // Gets the number of NewGreenCard IDs in the reviewer queue
     public static int getSizeReviewer() {
-        return -1;
+        return reviewerQueue.size();
     }
 
     // Gets the number of NewGreenCard IDs in the approver queue
     public static int getSizeApprover() {
-        return -1;
+        return approverQueue.size();
     }
 
     // Sets the reviewer queue to the provided queue of NewGreenCard IDs that need
@@ -55,11 +58,11 @@ public class WorkflowTable {
 
     // Gets the queue of NewGreenCard IDs that need to be reviewed
     public static Queue<String> getReviewerQueue() {
-        return null;
+        return reviewerQueue;
     }
 
     // Gets the queue of NewGreenCard IDs that need to be approved
     public static Queue<String> getApproverQueue() {
-        return null;
+        return approverQueue;
     }
 }

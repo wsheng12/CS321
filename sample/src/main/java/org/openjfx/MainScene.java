@@ -1,24 +1,17 @@
 package org.openjfx;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
-import org.openjfx.App;
 
-public class BackScene {
+public class MainScene {
 
-    public Scene createScene() {
-        // set title for the stage
-        
-        App.s.setTitle("creating buttons");
+    public Scene createScene(Stage s) {
 
-        // create three buttons
         Button dataEntryButton = new Button("Data Entry");
         Button reviewerButton = new Button("Reviewer Button");
         Button approverButton = new Button("Approver Button");
@@ -33,11 +26,11 @@ public class BackScene {
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
 
-
                 DataEntryScene dataEntryScene = new DataEntryScene();
-                Scene dataEntryScreen = dataEntryScene.createScene();
-                App.s.setScene(dataEntryScreen);
-                App.s.show();
+                Scene dataEntryScreen = dataEntryScene.createScene(s);
+                s.setScene(dataEntryScreen);
+                s.show();
+
             }
         };
 
@@ -45,9 +38,9 @@ public class BackScene {
             public void handle(ActionEvent e) {
 
                 ReviewerScene reviewerScene = new ReviewerScene();
-                Scene reviewerScreen = reviewerScene.createScene();
-                App.s.setScene(reviewerScreen);
-                App.s.show();
+                Scene reviewerScreen = reviewerScene.createScene(s);
+                s.setScene(reviewerScreen);
+                s.show();
 
             }
         };
@@ -56,10 +49,9 @@ public class BackScene {
             public void handle(ActionEvent e) {
 
                 ApproverScene approverScene = new ApproverScene();
-                Scene approverScreen = approverScene.createScene();
-                App.s.setScene(approverScreen);
-                App.s.show();
-
+                Scene approverScreen = approverScene.createScene(s);
+                s.setScene(approverScreen);
+                s.show();
 
             }
         };
@@ -77,15 +69,8 @@ public class BackScene {
 
         // create a scene
         Scene sc = new Scene(r, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
-        
-        sc.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        App.s.setScene(sc);
 
-        App.s.show();
-        App.s.setMaximized(true);
-        
         return sc;
-
     }
 
 }
