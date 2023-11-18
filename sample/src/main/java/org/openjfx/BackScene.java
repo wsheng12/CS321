@@ -9,14 +9,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.openjfx.App;
 
-public class App extends Application {
-    public static Stage s;
-    @Override
-    public void start(Stage s) {
+public class BackScene {
+
+    public Scene createScene() {
         // set title for the stage
-        this.s = s;
-        s.setTitle("creating buttons");
+        
+        App.s.setTitle("creating buttons");
 
         // create three buttons
         Button dataEntryButton = new Button("Data Entry");
@@ -36,9 +36,8 @@ public class App extends Application {
 
                 DataEntryScene dataEntryScene = new DataEntryScene();
                 Scene dataEntryScreen = dataEntryScene.createScene();
-                s.setScene(dataEntryScreen);
-                s.show();
-
+                App.s.setScene(dataEntryScreen);
+                App.s.show();
             }
         };
 
@@ -47,8 +46,8 @@ public class App extends Application {
 
                 ReviewerScene reviewerScene = new ReviewerScene();
                 Scene reviewerScreen = reviewerScene.createScene();
-                s.setScene(reviewerScreen);
-                s.show();
+                App.s.setScene(reviewerScreen);
+                App.s.show();
 
             }
         };
@@ -58,8 +57,9 @@ public class App extends Application {
 
                 ApproverScene approverScene = new ApproverScene();
                 Scene approverScreen = approverScene.createScene();
-                s.setScene(approverScreen);
-                s.show();
+                App.s.setScene(approverScreen);
+                App.s.show();
+
 
             }
         };
@@ -77,15 +77,15 @@ public class App extends Application {
 
         // create a scene
         Scene sc = new Scene(r, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
+        
+        sc.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+        App.s.setScene(sc);
 
-        // set the scene
-        s.setScene(sc);
+        App.s.show();
+        App.s.setMaximized(true);
+        
+        return sc;
 
-        s.show();
-        s.setMaximized(true);
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }

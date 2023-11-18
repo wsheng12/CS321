@@ -3,6 +3,8 @@ package org.openjfx;
 import java.util.concurrent.Flow;
 
 import org.openjfx.otherClasses.NewGreenCard;
+import org.openjfx.otherClasses.WorkflowTable;
+import org.openjfx.BackScene;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,21 +46,11 @@ public class DataEntryScene {
         // Create a new scene with the layout
 
         BorderPane border = new BorderPane();
-        HBox hbox = new HBox();
-
-        // top part
-        hbox.getStyleClass().add("top-hbox");
-
-        Text data_title = new Text("Data Entry");
-        data_title.getStyleClass().add("data-title");
-
-        hbox.getChildren().addAll(data_title);
-
-        border.setTop(hbox);
 
         // input box
         GridPane rootNode = new GridPane();
-        rootNode.getStyleClass().addAll("submission");
+
+        rootNode.getStyleClass().addAll("enter");
 
         rootNode.add(new Label("Name:"), 0, 0);
         TextField name = new TextField();
@@ -81,14 +73,12 @@ public class DataEntryScene {
         Button aButton = new Button("Submit");
         rootNode.add(aButton, 1, 4);
 
-        GridPane.setHalignment(aButton, HPos.LEFT);
         TextField result = new TextField();
 
         GridPane test = new GridPane();
         test.getStyleClass().addAll("center-hbox");
 
         test.add(rootNode, 0, 0);
-        // test.add(leftHbox);
 
         Label success = new Label("Click the button to send to be sent for review");
         rootNode.add(success, 0, 5);
@@ -129,6 +119,7 @@ public class DataEntryScene {
                 if (count == 3) {
                     InternalDatabase.add(id.getText(), greenCard);
                     success.setText("Data is validated, and will be sent to be reviewed");
+                    WorkflowTable.addReviewer(id.getText());
 
                 } else {
                     success.setText("Data is incorrect and has not been validated, please re-enter data.");
@@ -141,35 +132,38 @@ public class DataEntryScene {
         aButton.setOnAction(dataEntryClick);
 
 
-        // left side
-        HBox lefthBox = new HBox();
-        Text data_titles = new Text("Data Entry");
-        lefthBox.getChildren().addAll(data_titles);
-        lefthBox.getStyleClass().add("left-hbox");
-
-        // right side
         HBox rightHbox = new HBox();
         Text rightHboxText = new Text("Data Entry");
         rightHbox.getChildren().addAll(rightHboxText);
         rightHbox.getStyleClass().add("right-hbox");
 
-        // bottom
+
         HBox botHbox = new HBox();
-        Text botText = new Text("bottomTextLOL");
+        Text botText = new Text("bottomText");
         botHbox.getChildren().addAll(botText);
         botHbox.getStyleClass().add("bot-hbox");
 
-        border.setLeft(lefthBox);
         border.setRight(rightHbox);
         border.setBottom(botHbox);
 
         border.setCenter(test);
-        // addStackPane(hbox); // Add stack to HBox in top region
 
         Scene scene = new Scene(border, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
-        // Return the created scene
+        //Return back
+        Button backButton = new Button("Back");
+        rootNode.add(backButton, 3, 6);
+        
+        EventHandler<ActionEvent> back = new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+
+                createScene();
+
+            }
+        };
+        backButton.setOnAction(back);
+
         return scene;
     }
 
