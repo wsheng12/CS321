@@ -35,10 +35,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ReviewerScene {
 
-    public Scene createScene() {
+    public Scene createScene(Stage s) {
 
         // Create a new scene with the layout
 
@@ -101,17 +102,13 @@ public class ReviewerScene {
                 // will be adding my own ID here.
                 String id = WorkflowTable.popReviewer();
 
-                // dummy add internal database
-                NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
-                        "brian@gmail.com");
-                InternalDatabase.add("ABC123456789", request);
-
                 NewGreenCard load = InternalDatabase.get(id);
                 Text reviewer_title = new Text(
                         "Name: " + load.getName() + " | Address: " + load.getAddress() + " | email: " + load.getEmail()
                                 + " | id: " + load.getId());
 
                 CenterNode.add(reviewer_title, 0, 0);
+                WorkflowTable.addApprover(id);
 
             }
         };
@@ -154,7 +151,8 @@ public class ReviewerScene {
 
                 if (count == 3) {
                     InternalDatabase.replace(id.getText(), greenCard);
-                    success.setText("Data is correct and validated. It has been sent to the approver for final approval.");
+                    success.setText(
+                            "Data is correct and validated. It has been sent to the approver for final approval.");
                     WorkflowTable.addApprover(id.getText());
 
                 } else {
@@ -194,6 +192,9 @@ public class ReviewerScene {
 
         border.setCenter(CenterNode);
         // addStackPane(hbox); // Add stack to HBox in top region
+        BackButton createBackButton = new BackButton();
+        Button backButton = createBackButton.createButton(s);
+        rootNode.add(backButton, 3, 6);
 
         Scene scene = new Scene(border, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
