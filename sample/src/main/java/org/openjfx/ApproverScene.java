@@ -53,8 +53,8 @@ public class ApproverScene {
         border.setTop(hbox);
 
         // input box
-        GridPane rootNode = new GridPane();
-        rootNode.getStyleClass().addAll("submission");
+        GridPane origin = new GridPane();
+        origin.getStyleClass().addAll("submission");
 
         Button aButton = new Button("Approve");
 
@@ -63,10 +63,10 @@ public class ApproverScene {
         GridPane.setHalignment(aButton, HPos.LEFT);
         TextField result = new TextField();
 
-        GridPane test = new GridPane();
-        test.getStyleClass().addAll("center-hbox");
+        GridPane assess = new GridPane();
+        assess.getStyleClass().addAll("center-hbox");
 
-        test.add(rootNode, 0, 0);
+        assess.add(origin, 0, 0);
 
         aButton.setOnAction(e -> {
 
@@ -75,15 +75,15 @@ public class ApproverScene {
         Label success = new Label("Click approve or disapprove.");
 
         Button loadRequestButton = new Button("Load Request");
-        rootNode.add(loadRequestButton, 0, 1);
+        origin.add(loadRequestButton, 0, 1);
 
         EventHandler<ActionEvent> loadRequest = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                rootNode.add(aButton, 0, 2);
-                rootNode.add(daButton, 0, 3);
-                rootNode.add(success, 0, 4);
-                // rootNode.add(new Label("Approve"), 0, 4);
-                // rootNode.add(new Label("Disapprove"), 1, 4);
+                origin.add(aButton, 0, 2);
+                origin.add(daButton, 0, 3);
+                origin.add(success, 0, 4);
+                // origin.add(new Label("Approve"), 0, 4);
+                // origin.add(new Label("Disapprove"), 1, 4);
 
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
@@ -98,7 +98,7 @@ public class ApproverScene {
                 Text reviewer_title = new Text("Name: " + load.getName() + " | Address: " + load.getAddress()
                         + " | email: " + load.getEmail() + " | id: " + load.getId());
 
-                rootNode.add(reviewer_title, 0, 0);
+                origin.add(reviewer_title, 0, 0);
 
             }
         };
@@ -143,12 +143,12 @@ public class ApproverScene {
         border.setRight(rightHbox);
         border.setBottom(botHbox);
 
-        border.setCenter(test);
+        border.setCenter(assess);
         // addStackPane(hbox); // Add stack to HBox in top region
 
         BackButton createBackButton = new BackButton();
         Button backButton = createBackButton.createButton(s);
-        rootNode.add(backButton, 3, 6);
+        origin.add(backButton, 3, 6);
 
         Scene scene = new Scene(border, Constants.SCREEN_SIZE_X, Constants.SCREEN_SIZE_Y);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
