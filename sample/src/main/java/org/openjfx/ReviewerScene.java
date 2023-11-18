@@ -2,6 +2,8 @@ package org.openjfx;
 
 import java.util.concurrent.Flow;
 
+import org.openjfx.otherClasses.WorkflowTable;
+
 import org.openjfx.otherClasses.NewGreenCard;
 
 import javafx.event.ActionEvent;
@@ -97,7 +99,7 @@ public class ReviewerScene {
 
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
-                String id = "ABC123456789";
+                String id = WorkflowTable.popReviewer();
 
                 // dummy add internal database
                 NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
@@ -152,8 +154,8 @@ public class ReviewerScene {
 
                 if (count == 3) {
                     InternalDatabase.replace(id.getText(), greenCard);
-                    success.setText(
-                            "Data is correct and validated. It has been sent to the approver for final approval.");
+                    success.setText("Data is correct and validated. It has been sent to the approver for final approval.");
+                    WorkflowTable.addApprover(id.getText());
 
                 } else {
                     success.setText("Data is incorrect and has not been validated, please re-enter data.");

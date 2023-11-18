@@ -3,6 +3,7 @@ package org.openjfx;
 import java.util.concurrent.Flow;
 
 import org.openjfx.otherClasses.NewGreenCard;
+import org.openjfx.otherClasses.WorkflowTable;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,8 +36,9 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class ApproverScene {
-
+    String id;
     public Scene createScene() {
+        
         // dummy object
         NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
                 "brian@gmail.com");
@@ -45,14 +47,6 @@ public class ApproverScene {
 
         BorderPane border = new BorderPane();
         HBox hbox = new HBox();
-
-        // top part
-        hbox.getStyleClass().add("top-hbox");
-
-        Text approver_title = new Text("Approver");
-        approver_title.getStyleClass().add("approver-title");
-
-        hbox.getChildren().addAll(approver_title);
 
         border.setTop(hbox);
 
@@ -80,7 +74,7 @@ public class ApproverScene {
 
         Button loadRequestButton = new Button("Load Request");
         rootNode.add(loadRequestButton, 0, 1);
-
+        
         EventHandler<ActionEvent> loadRequest = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
                 rootNode.add(aButton, 0, 2);
@@ -91,17 +85,15 @@ public class ApproverScene {
 
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
-                String id = "ABC123456789";
-
+                id = WorkflowTable.popReviewer();
+                
                 // dummy add internal database
                 NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
                         "brian@gmail.com");
                 InternalDatabase.add("ABC123456789", request);
 
                 NewGreenCard load = InternalDatabase.get(id);
-                Text reviewer_title = new Text(
-                        "Name: " + load.getName() + " | Address: " + load.getAddress() + " | email: " + load.getEmail()
-                                + " | id: " + load.getId());
+                Text reviewer_title = new Text("Name: " + load.getName() + " | Address: " + load.getAddress() + " | email: " + load.getEmail() + " | id: " + load.getId());
 
                 rootNode.add(reviewer_title, 0, 0);
 
@@ -116,7 +108,7 @@ public class ApproverScene {
                 // workflow table pulls in the id - since workflow table class is not done yet I
                 // will be adding my own ID here.
                 success.setText("It has been approved and an email has been sent to the user");
-
+                
             }
         };
 
@@ -125,20 +117,12 @@ public class ApproverScene {
         EventHandler<ActionEvent> disapproverEntryClick = new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent e) {
-
-                success.setText("It has been disapproved and has ben sent back to the reviewer.");
-                ;
-
+                success.setText("It has been disapproved and has ben sent back to the reviewer.");;
+                WorkflowTable.addReviewer(id);
             }
         };
 
         daButton.setOnAction(disapproverEntryClick);
-
-        // left side
-        HBox lefthBox = new HBox();
-        Text approver_titles = new Text("Approver");
-        lefthBox.getChildren().addAll(approver_titles);
-        lefthBox.getStyleClass().add("left-hbox");
 
         // right side
         HBox rightHbox = new HBox();
@@ -152,7 +136,7 @@ public class ApproverScene {
         botHbox.getChildren().addAll(botText);
         botHbox.getStyleClass().add("bot-hbox");
 
-        border.setLeft(lefthBox);
+        
         border.setRight(rightHbox);
         border.setBottom(botHbox);
 
