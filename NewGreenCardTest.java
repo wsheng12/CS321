@@ -42,6 +42,20 @@ public class NewGreenCardTest {
 
     }
 
+    //checking if object is NULL
+    @Test
+    public void greenCardTypeTest() {
+
+        String address = "4542 Ruth Drive";
+        String name = "Bianca AKins";
+        String id = "XYZ123456789";
+
+        NewGreenCard greenCard = null;
+
+        assertEquals(greenCard != null, false);
+
+    }
+
     // test to make sure validation method works correctly
     @Test
     public void validationTest() {
@@ -127,6 +141,7 @@ public class NewGreenCardTest {
         // combine this with test below?
 
     }
+    
 
     // check to make sure internal database retrieve method is working correctly
     @Test
