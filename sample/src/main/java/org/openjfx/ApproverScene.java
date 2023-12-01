@@ -121,7 +121,7 @@ public class ApproverScene {
 
             public void handle(ActionEvent e) {
                 success.setText("It has been disapproved and has ben sent back to the reviewer.");
-                ;
+                
                 WorkflowTable.addReviewer(id);
             }
         };
