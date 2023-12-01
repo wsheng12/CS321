@@ -4,9 +4,9 @@ import org.junit.Test;
 public class NewGreenCardTest {
 
     // test different parameters of the object
-    //Added more here
-    //Added comment here See if it works.
-    //Added even more comments
+    // Added more here
+    // Added comment here See if it works.
+    // Added even more comments
     @Test
     public void argumentTypeTest() {
 
@@ -42,7 +42,7 @@ public class NewGreenCardTest {
 
     }
 
-    //checking if object is NULL
+    // checking if object is NULL
     @Test
     public void greenCardTypeTest() {
 
@@ -141,7 +141,6 @@ public class NewGreenCardTest {
         // combine this with test below?
 
     }
-    
 
     // check to make sure internal database retrieve method is working correctly
     @Test
