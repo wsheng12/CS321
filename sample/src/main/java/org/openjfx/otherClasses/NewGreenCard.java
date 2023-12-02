@@ -6,7 +6,7 @@ import org.openjfx.InternalDatabase;
 
 public class NewGreenCard {
 
-    // The address associated with the green card requester
+    // The address associated with the green card requester 
     private String address;
 
     // The name of the green card requester
