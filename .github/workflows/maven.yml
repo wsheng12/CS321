@@ -13,6 +13,8 @@ on:
     branches: [ "ws/sonarqube" ]
   pull_request:   
     branches: [ "ws/sonarqube" ]
+  merge:
+    branches: ["main"]
 
 jobs:
   build:
