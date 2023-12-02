@@ -47,13 +47,21 @@ public class WorkflowTable {
     // Sets the reviewer queue to the provided queue of NewGreenCard IDs that need
     // to be reviewed
     public static boolean setReviewerQueue(Queue<String> reviewerQueue) {
-        return false;
+        Iterator<String> it = reviewerQueue.iterator();
+        while(it.hasNext())  {
+            WorkflowTable.reviewerQueue.add(it.next());
+        }
+        return true;
     }
 
     // Sets the approver queue to the provided queue of NewGreenCard IDs that need
     // to be approved
     public static boolean setApproverQueue(Queue<String> approverQueue) {
-        return false;
+        Iterator<String> it = approverQueue.iterator();
+        while(it.hasNext())  {
+            WorkflowTable.approverQueue.add(it.next());
+        }
+        return true;
     }
 
     // Gets the queue of NewGreenCard IDs that need to be reviewed

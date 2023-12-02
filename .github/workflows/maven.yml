@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "Workflow_add_Winston/pipeline-testing" ]
-  pull_request:
-    branches: [ "Workflow_add_Winston/pipeline-testing" ]
+    branches: [ "ws/sonarqube" ]
+  pull_request:   
+    branches: [ "ws/sonarqube" ]
 
 jobs:
   build:
@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       run: ls
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file sample/pom.xml
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
