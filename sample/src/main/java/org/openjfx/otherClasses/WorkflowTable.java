@@ -48,7 +48,7 @@ public class WorkflowTable {
     // to be reviewed
     public static boolean setReviewerQueue(Queue<String> reviewerQueue) {
         Iterator<String> it = reviewerQueue.iterator();
-        while(it.hasNext())  {
+        while (it.hasNext()) {
             WorkflowTable.reviewerQueue.add(it.next());
         }
         return true;
@@ -58,7 +58,7 @@ public class WorkflowTable {
     // to be approved
     public static boolean setApproverQueue(Queue<String> approverQueue) {
         Iterator<String> it = approverQueue.iterator();
-        while(it.hasNext())  {
+        while (it.hasNext()) {
             WorkflowTable.approverQueue.add(it.next());
         }
         return true;

@@ -43,7 +43,6 @@ public class DataEntryScene {
         NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
                 "brian@gmail.com");
 
-
         BorderPane border = new BorderPane();
 
         GridPane base = new GridPane();
@@ -84,46 +83,19 @@ public class DataEntryScene {
         EventHandler<ActionEvent> dataEntryClick = new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent e) {
-                ExternalDatabase external = new ExternalDatabase();
-                int count = 0;
-                int checkNull = 0;
+
                 NewGreenCard greenCard = NewGreenCard.createNewGreenCard(address.getText(), name.getText(),
                         id.getText(), email.getText());
 
-                if (external.searchExternalDatabase(id.getText()) == null) {
-                    checkNull--;
-                } else if (external.searchExternalDatabase(id.getText()).getName() == null) {
-                    checkNull--;
-                } else if (external.searchExternalDatabase(id.getText()).getAddress() == null) {
-                    checkNull--;
-                }
+                if (greenCard.validate(false, greenCard) == false) {
 
-                if (checkNull == 0) {
-                    if (id.getText().equals(external.searchExternalDatabase(id.getText()).getId())) {
-                        count++;
-                    }
-                    ;
-                    if (name.getText().equals(external.searchExternalDatabase(id.getText()).getName())) {
-                        count++;
-                    }
-                    ;
-                    if (address.getText().equals(external.searchExternalDatabase(id.getText()).getAddress())) {
-                        count++;
-                    }
-                    ;
-
-                }
-
-                if (count == 3) {
-                    InternalDatabase.add(id.getText(), greenCard);
-                    hit.setText("Data is validated, and will be sent to be reviewed");
-                    WorkflowTable.addReviewer(id.getText());
+                    hit.setText("Invalid input. Please try again.");
 
                 } else {
-                    hit.setText("Data is incorrect and has not been validated, please re-enter data.");
+                    WorkflowTable.addReviewer(greenCard.getId());
+                    hit.setText("It has been validated and sent to the reviewer");
 
                 }
-
             }
         };
 
