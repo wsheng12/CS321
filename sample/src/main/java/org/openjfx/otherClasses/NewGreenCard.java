@@ -1,6 +1,9 @@
 //Represents a new green card object with address, name, id, and status information
 package org.openjfx.otherClasses;
 
+import org.openjfx.ExternalDatabase;
+import org.openjfx.InternalDatabase;
+
 public class NewGreenCard {
 
     // The address associated with the green card requester
@@ -31,27 +34,78 @@ public class NewGreenCard {
     }
 
     // Validates the green card requester information
-    public boolean validate(boolean reviewer) {
-        return false;
+    public boolean validate(boolean reviewer, NewGreenCard greenCard) {
+
+        ExternalDatabase extern = new ExternalDatabase();
+        int count = 0;
+        int checkNull = 0;
+
+        if (extern.searchExternalDatabase(greenCard.getId()) == null) {
+
+            checkNull--;
+        } else if (extern.searchExternalDatabase(greenCard.getId()).getAddress() == null) {
+
+            checkNull--;
+        } else if (extern.searchExternalDatabase(greenCard.getId()).getName() == null) {
+
+            checkNull--;
+        }
+        if (checkNull == 0) {
+            if (greenCard.getId().equals(extern.searchExternalDatabase(greenCard.getId()).getId())) {
+                count++;
+            }
+
+            if (greenCard.getName().equals(extern.searchExternalDatabase(greenCard.getId()).getName())) {
+                count++;
+            }
+
+            if (greenCard.getAddress().equals(extern.searchExternalDatabase(greenCard.getId()).getAddress())) {
+                count++;
+            }
+
+        }
+
+        if (count == 3) {
+
+            InternalDatabase.add(greenCard.getId(), greenCard);
+
+            if (reviewer == true) {
+                WorkflowTable.addReviewer(greenCard.getId());
+            } else {
+                WorkflowTable.addApprover(greenCard.getId());
+            }
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
     }
 
     // Adds the green card requester information to the internal database
-    public boolean internalDatabaseAdd() {
-        return false;
+    public boolean internalDatabaseAdd(NewGreenCard greenCard) {
+        InternalDatabase.add(greenCard.getId(), greenCard);
+        return true;
     }
 
     // Retrieves a green card requester object from the external database based on
     // the given
     // ID
     public static NewGreenCard externalDatabaseRetrieve(String id) {
-        return null;
+
+        ExternalDatabase extern = new ExternalDatabase();
+
+        return extern.searchExternalDatabase(id);
+
     }
 
     // Retrieves a green card requester object from the internal database based on
     // the given
     // ID
     public static NewGreenCard internalDatabaseRetrieve(String id) {
-        return null;
+        return InternalDatabase.get(id);
     }
 
     // Gets the name of the green card requester

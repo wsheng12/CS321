@@ -115,49 +115,17 @@ public class ReviewerScene {
 
         EventHandler<ActionEvent> submit = new EventHandler<ActionEvent>() {
             public void handle(ActionEvent e) {
-                ExternalDatabase external = new ExternalDatabase();
-                int count = 0;
-                int checkNull = 0;
+
                 NewGreenCard greenCard = NewGreenCard.createNewGreenCard(address.getText(), name.getText(),
                         id.getText(), email.getText());
 
-                if (external.searchExternalDatabase(id.getText()) == null) {
-                    checkNull--;
-                } else if (external.searchExternalDatabase(id.getText()).getName() == null) {
-                    checkNull--;
-                } else if (external.searchExternalDatabase(id.getText()).getAddress() == null) {
-                    checkNull--;
-                } else if (external.searchExternalDatabase(id.getText()).getEmail() == null) {
-                    checkNull--;
-                }
+                if (greenCard.validate(true, greenCard) == false) {
 
-                if (checkNull == 0) {
-                    if (id.getText().equals(external.searchExternalDatabase(id.getText()).getId())) {
-                        count++;
-                    }
-
-                    if (name.getText().equals(external.searchExternalDatabase(id.getText()).getName())) {
-                        count++;
-                    }
-
-                    if (address.getText().equals(external.searchExternalDatabase(id.getText()).getAddress())) {
-                        count++;
-                    }
-
-                    // don't check gmail because reviewer can change the gmail when they edit data
-                    // (this is the only field they should change).
-
-                }
-
-                if (count == 3) {
-                    InternalDatabase.replace(id.getText(), greenCard);
-                    success.setText(
-                            "Data is correct and validated. It has been sent to the approver for final approval.");
-                    WorkflowTable.addApprover(id.getText());
+                    success.setText("Invalid input. Please try again.");
 
                 } else {
-                    success.setText("Data is incorrect and has not been validated, please re-enter data.");
-                    // dummy send to the workflow table
+
+                    success.setText("It has been validated and sent to the approver");
 
                 }
 
