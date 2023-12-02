@@ -1,5 +1,7 @@
+package org.openjfx.tests;
 import static org.junit.Assert.*;
 import org.junit.Test;
+import org.openjfx.otherClasses.NewGreenCard;
 
 public class NewGreenCardTest {
 
@@ -44,7 +46,7 @@ public class NewGreenCardTest {
 
     //checking if object is NULL
     @Test
-    public void greenCardTypeTest() {
+    public void greenCardTypeTestNull() {
 
         String address = "4542 Ruth Drive";
         String name = "Bianca AKins";
