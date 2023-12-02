@@ -2,7 +2,6 @@ package org.openjfx.tests;
 
 // import src.main.java.org.openjfx;
 import org.openjfx.otherClasses.*;
-import org.openjfx.*;
 
 import static org.junit.Assert.*;
 

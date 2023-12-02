@@ -66,15 +66,11 @@ public class NewGreenCard {
         }
 
         if (count == 3) {
-
-            InternalDatabase.add(greenCard.getId(), greenCard);
-
             if (reviewer == true) {
-                WorkflowTable.addReviewer(greenCard.getId());
+                InternalDatabase.replace(greenCard.getId(), greenCard);
             } else {
-                WorkflowTable.addApprover(greenCard.getId());
+                InternalDatabase.add(greenCard.getId(), greenCard);
             }
-
             return true;
 
         } else {

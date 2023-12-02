@@ -87,12 +87,12 @@ public class DataEntryScene {
                 NewGreenCard greenCard = NewGreenCard.createNewGreenCard(address.getText(), name.getText(),
                         id.getText(), email.getText());
 
-                if (greenCard.validate(true, greenCard) == false) {
+                if (greenCard.validate(false, greenCard) == false) {
 
                     hit.setText("Invalid input. Please try again.");
 
                 } else {
-
+                    WorkflowTable.addReviewer(greenCard.getId());
                     hit.setText("It has been validated and sent to the reviewer");
 
                 }

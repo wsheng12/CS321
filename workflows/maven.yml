@@ -10,11 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "ws/sonarqube" ]
+    branches: [ "main" ]
   pull_request:   
-    branches: [ "ws/sonarqube" ]
-  merge:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   build:

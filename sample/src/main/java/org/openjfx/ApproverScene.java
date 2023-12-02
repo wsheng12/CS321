@@ -90,9 +90,10 @@ public class ApproverScene {
                 id = WorkflowTable.popApprover();
 
                 // dummy add internal database
-                NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane", "Brian Andres", "ABC123456789",
-                        "brian@gmail.com");
-                InternalDatabase.add("ABC123456789", request);
+                // NewGreenCard request = NewGreenCard.createNewGreenCard("1829 Lois Lane",
+                // "Brian Andres", "ABC123456789",
+                // "brian@gmail.com");
+                // InternalDatabase.add("ABC123456789", request);
 
                 NewGreenCard load = InternalDatabase.get(id);
                 Text reviewer_title = new Text("Name: " + load.getName() + " | Address: " + load.getAddress()
@@ -121,7 +122,7 @@ public class ApproverScene {
 
             public void handle(ActionEvent e) {
                 success.setText("It has been disapproved and has ben sent back to the reviewer.");
-                
+
                 WorkflowTable.addReviewer(id);
             }
         };

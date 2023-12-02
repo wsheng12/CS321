@@ -124,7 +124,7 @@ public class ReviewerScene {
                     success.setText("Invalid input. Please try again.");
 
                 } else {
-
+                    WorkflowTable.addApprover(greenCard.getId());
                     success.setText("It has been validated and sent to the approver");
 
                 }
