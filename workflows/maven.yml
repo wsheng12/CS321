@@ -10,9 +10,10 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "ba/pipeline-running" ]
-  pull_request:   
-    branches: [ "ba/pipeline-running" ]
+    branches: [ "ba/pipeline-testing" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "ba/pipeline-testing" ]
 
 jobs:
   build:
